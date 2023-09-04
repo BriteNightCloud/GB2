@@ -45,14 +45,14 @@ public class Model {
         return -1; // Вернуть -1, если игрушек нет
     }
 
-    public void saveToFile(String filePath) {
+    public void saveToFile(String filePath) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Toy toy : toys) {
                 writer.write(toy.toString());
                 writer.newLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException("Ошибка при сохранении данных в файл.", e);
         }
     }
 }
